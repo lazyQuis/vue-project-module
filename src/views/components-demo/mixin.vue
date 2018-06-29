@@ -97,11 +97,11 @@
 </template>
 
 <script>
-import PanThumb from '@/components/PanThumb'
-import MdInput from '@/components/MDinput'
-import Mallki from '@/components/TextHoverEffect/Mallki'
-import DropdownMenu from '@/components/Share/dropdownMenu'
-import waves from '@/directive/waves/index.js' // 水波纹指令
+import PanThumb from '@/components/PanThumb';
+import MdInput from '@/components/MDinput';
+import Mallki from '@/components/TextHoverEffect/Mallki';
+import DropdownMenu from '@/components/Share/dropdownMenu';
+import waves from '@/directive/waves/index.js'; // 水波纹指令
 
 export default {
   name: 'componentMixin-demo',
@@ -109,25 +109,25 @@ export default {
     PanThumb,
     MdInput,
     Mallki,
-    DropdownMenu
+    DropdownMenu,
   },
   directives: {
-    waves
+    waves,
   },
   data() {
     const validate = (rule, value, callback) => {
       if (value.length !== 6) {
-        callback(new Error('请输入六个字符'))
+        callback(new Error('请输入六个字符'));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
       demo: {
-        title: ''
+        title: '',
       },
       demoRules: {
-        title: [{ required: true, trigger: 'change', validator: validate }]
+        title: [{ required: true, trigger: 'change', validator: validate }],
       },
       articleList: [
         { title: '基础篇', href: 'https://segmentfault.com/a/1190000009275424' },
@@ -135,11 +135,11 @@ export default {
         { title: '实战篇', href: 'https://segmentfault.com/a/1190000009762198' },
         { title: 'vueAdmin-template 篇', href: 'https://segmentfault.com/a/1190000010043013' },
         { title: '自行封装 component', href: 'https://segmentfault.com/a/1190000009090836' },
-        { title: '优雅的使用 icon', href: 'https://segmentfault.com/a/https://segmentfault.com/a/1190000012213278' }
-      ]
-    }
-  }
-}
+        { title: '优雅的使用 icon', href: 'https://segmentfault.com/a/https://segmentfault.com/a/1190000012213278' },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped>

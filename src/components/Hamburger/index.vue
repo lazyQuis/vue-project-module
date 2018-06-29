@@ -18,14 +18,14 @@ export default {
   props: {
     isActive: {
       type: Boolean,
-      default: false
+      default: false,
     },
     toggleClick: {
       type: Function,
-      default: null
-    }
-  }
-}
+      default: null,
+    },
+  },
+};
 </script>
 
 <style scoped>

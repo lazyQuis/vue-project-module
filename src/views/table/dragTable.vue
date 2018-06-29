@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
-import Sortable from 'sortablejs'
+import { fetchList } from '@/api/article';
+import Sortable from 'sortablejs';
 
 export default {
   name: 'dragTable',
@@ -72,61 +72,61 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 10
+        limit: 10,
       },
       sortable: null,
       oldList: [],
-      newList: []
-    }
+      newList: [],
+    };
   },
   filters: {
     statusFilter(status) {
       const statusMap = {
         published: 'success',
         draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
+        deleted: 'danger',
+      };
+      return statusMap[status];
+    },
   },
   created() {
-    this.getList()
+    this.getList();
   },
   methods: {
     getList() {
-      this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
-        this.listLoading = false
-        this.oldList = this.list.map(v => v.id)
-        this.newList = this.oldList.slice()
+      this.listLoading = true;
+      fetchList(this.listQuery).then((response) => {
+        this.list = response.data.items;
+        this.total = response.data.total;
+        this.listLoading = false;
+        this.oldList = this.list.map(v => v.id);
+        this.newList = this.oldList.slice();
         this.$nextTick(() => {
-          this.setSort()
-        })
-      })
+          this.setSort();
+        });
+      });
     },
     setSort() {
-      const el = document.querySelectorAll('.el-table__body-wrapper > table > tbody')[0]
+      const el = document.querySelectorAll('.el-table__body-wrapper > table > tbody')[0];
       this.sortable = Sortable.create(el, {
         ghostClass: 'sortable-ghost', // Class name for the drop placeholder,
-        setData: function(dataTransfer) {
-          dataTransfer.setData('Text', '')
+        setData(dataTransfer) {
+          dataTransfer.setData('Text', '');
           // to avoid Firefox bug
           // Detail see : https://github.com/RubaXa/Sortable/issues/1012
         },
-        onEnd: evt => {
-          const targetRow = this.list.splice(evt.oldIndex, 1)[0]
-          this.list.splice(evt.newIndex, 0, targetRow)
+        onEnd: (evt) => {
+          const targetRow = this.list.splice(evt.oldIndex, 1)[0];
+          this.list.splice(evt.newIndex, 0, targetRow);
 
           // for show the changes, you can delete in you code
-          const tempIndex = this.newList.splice(evt.oldIndex, 1)[0]
-          this.newList.splice(evt.newIndex, 0, tempIndex)
-        }
-      })
-    }
-  }
-}
+          const tempIndex = this.newList.splice(evt.oldIndex, 1)[0];
+          this.newList.splice(evt.newIndex, 0, tempIndex);
+        },
+      });
+    },
+  },
+};
 </script>
 
 <style>

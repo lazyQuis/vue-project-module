@@ -10,14 +10,14 @@
 export default {
   props: {
     className: {
-      type: String
+      type: String,
     },
     text: {
       type: String,
-      default: 'vue-element-admin'
-    }
-  }
-}
+      default: 'vue-element-admin',
+    },
+  },
+};
 </script>
 
 

@@ -1,10 +1,10 @@
 const data = {
   state: {
-    iconsMap: []
+    iconsMap: [],
   },
   generate(iconsMap) {
-    this.state.iconsMap = iconsMap
-  }
-}
+    this.state.iconsMap = iconsMap;
+  },
+};
 
-export default data
+export default data;

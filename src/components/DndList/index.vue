@@ -25,75 +25,75 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable'
+import draggable from 'vuedraggable';
 
 export default {
   name: 'DndList',
   components: { draggable },
   computed: {
     filterList2() {
-      return this.list2.filter(v => {
+      return this.list2.filter((v) => {
         if (this.isNotInList1(v)) {
-          return v
+          return v;
         }
-        return false
-      })
-    }
+        return false;
+      });
+    },
   },
   props: {
     list1: {
       type: Array,
       default() {
-        return []
-      }
+        return [];
+      },
     },
     list2: {
       type: Array,
       default() {
-        return []
-      }
+        return [];
+      },
     },
     list1Title: {
       type: String,
-      default: 'list1'
+      default: 'list1',
     },
     list2Title: {
       type: String,
-      default: 'list2'
+      default: 'list2',
     },
     width1: {
       type: String,
-      default: '48%'
+      default: '48%',
     },
     width2: {
       type: String,
-      default: '48%'
-    }
+      default: '48%',
+    },
   },
   methods: {
     isNotInList1(v) {
-      return this.list1.every(k => v.id !== k.id)
+      return this.list1.every(k => v.id !== k.id);
     },
     isNotInList2(v) {
-      return this.list2.every(k => v.id !== k.id)
+      return this.list2.every(k => v.id !== k.id);
     },
     deleteEle(ele) {
       for (const item of this.list1) {
         if (item.id === ele.id) {
-          const index = this.list1.indexOf(item)
-          this.list1.splice(index, 1)
-          break
+          const index = this.list1.indexOf(item);
+          this.list1.splice(index, 1);
+          break;
         }
       }
       if (this.isNotInList2(ele)) {
-        this.list2.unshift(ele)
+        this.list2.unshift(ele);
       }
     },
     pushEle(ele) {
-      this.list1.push(ele)
-    }
-  }
-}
+      this.list1.push(ele);
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

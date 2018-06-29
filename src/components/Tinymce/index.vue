@@ -8,65 +8,64 @@
 </template>
 
 <script>
-import editorImage from './components/editorImage'
-import plugins from './plugins'
-import toolbar from './toolbar'
+import editorImage from './components/editorImage';
+import plugins from './plugins';
+import toolbar from './toolbar';
 
 export default {
   name: 'tinymce',
   components: { editorImage },
   props: {
     id: {
-      type: String
+      type: String,
     },
     value: {
       type: String,
-      default: ''
+      default: '',
     },
     toolbar: {
       type: Array,
       required: false,
       default() {
-        return []
-      }
+        return [];
+      },
     },
     menubar: {
-      default: 'file edit insert view format table'
+      default: 'file edit insert view format table',
     },
     height: {
       type: Number,
       required: false,
-      default: 360
-    }
+      default: 360,
+    },
   },
   data() {
     return {
       hasChange: false,
       hasInit: false,
-      tinymceId: this.id || 'vue-tinymce-' + +new Date(),
-      fullscreen: false
-    }
+      tinymceId: this.id || `vue-tinymce-${+new Date()}`,
+      fullscreen: false,
+    };
   },
   watch: {
     value(val) {
       if (!this.hasChange && this.hasInit) {
-        this.$nextTick(() =>
-          window.tinymce.get(this.tinymceId).setContent(val || ''))
+        this.$nextTick(() => window.tinymce.get(this.tinymceId).setContent(val || ''));
       }
-    }
+    },
   },
   mounted() {
-    this.initTinymce()
+    this.initTinymce();
   },
   activated() {
-    this.initTinymce()
+    this.initTinymce();
   },
   deactivated() {
-    this.destroyTinymce()
+    this.destroyTinymce();
   },
   methods: {
     initTinymce() {
-      const _this = this
+      const _this = this;
       window.tinymce.init({
         selector: `#${this.tinymceId}`,
         height: this.height,
@@ -74,7 +73,7 @@ export default {
         object_resizing: false,
         toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
         menubar: this.menubar,
-        plugins: plugins,
+        plugins,
         end_container_on_empty_block: true,
         powerpaste_word_import: 'clean',
         code_dialog_height: 450,
@@ -84,21 +83,21 @@ export default {
         imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
         default_link_target: '_blank',
         link_title: false,
-        init_instance_callback: editor => {
+        init_instance_callback: (editor) => {
           if (_this.value) {
-            editor.setContent(_this.value)
+            editor.setContent(_this.value);
           }
-          _this.hasInit = true
+          _this.hasInit = true;
           editor.on('NodeChange Change KeyUp SetContent', () => {
-            this.hasChange = true
-            this.$emit('input', editor.getContent())
-          })
+            this.hasChange = true;
+            this.$emit('input', editor.getContent());
+          });
         },
         setup(editor) {
           editor.on('FullscreenStateChanged', (e) => {
-            _this.fullscreen = e.state
-          })
-        }
+            _this.fullscreen = e.state;
+          });
+        },
         // 整合七牛上传
         // images_dataimg_filter(img) {
         //   setTimeout(() => {
@@ -132,30 +131,30 @@ export default {
         //     console.log(err);
         //   });
         // },
-      })
+      });
     },
     destroyTinymce() {
       if (window.tinymce.get(this.tinymceId)) {
-        window.tinymce.get(this.tinymceId).destroy()
+        window.tinymce.get(this.tinymceId).destroy();
       }
     },
     setContent(value) {
-      window.tinymce.get(this.tinymceId).setContent(value)
+      window.tinymce.get(this.tinymceId).setContent(value);
     },
     getContent() {
-      window.tinymce.get(this.tinymceId).getContent()
+      window.tinymce.get(this.tinymceId).getContent();
     },
     imageSuccessCBK(arr) {
-      const _this = this
-      arr.forEach(v => {
-        window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`)
-      })
-    }
+      const _this = this;
+      arr.forEach((v) => {
+        window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`);
+      });
+    },
   },
   destroyed() {
-    this.destroyTinymce()
-  }
-}
+    this.destroyTinymce();
+  },
+};
 </script>
 
 <style scoped>

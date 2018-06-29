@@ -21,31 +21,29 @@
 </template>
 
 <script>
-import icons from './generateIconsView'
-import clipboard from '@/utils/clipboard'
+import icons from './generateIconsView';
+import clipboard from '@/utils/clipboard';
 
 export default {
   name: 'icons',
   data() {
     return {
-      iconsMap: []
-    }
+      iconsMap: [],
+    };
   },
   mounted() {
-    const iconsMap = icons.state.iconsMap.map((i) => {
-      return i.default.id.split('-')[1]
-    })
-    this.iconsMap = iconsMap
+    const iconsMap = icons.state.iconsMap.map(i => i.default.id.split('-')[1]);
+    this.iconsMap = iconsMap;
   },
   methods: {
     generateIconCode(symbol) {
-      return `<svg-icon icon-class="${symbol}" />`
+      return `<svg-icon icon-class="${symbol}" />`;
     },
     handleClipboard(text, event) {
-      clipboard(text, event)
-    }
-  }
-}
+      clipboard(text, event);
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

@@ -17,15 +17,15 @@ export default {
   props: {
     visibilityHeight: {
       type: Number,
-      default: 400
+      default: 400,
     },
     backPosition: {
       type: Number,
-      default: 0
+      default: 0,
     },
     customStyle: {
       type: Object,
-      default: function() {
+      default() {
         return {
           right: '50px',
           bottom: '50px',
@@ -33,54 +33,54 @@ export default {
           height: '40px',
           'border-radius': '4px',
           'line-height': '45px',
-          background: '#e7eaf1'
-        }
-      }
+          background: '#e7eaf1',
+        };
+      },
     },
     transitionName: {
       type: String,
-      default: 'fade'
-    }
+      default: 'fade',
+    },
   },
   data() {
     return {
       visible: false,
-      interval: null
-    }
+      interval: null,
+    };
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll);
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('scroll', this.handleScroll);
     if (this.interval) {
-      clearInterval(this.interval)
+      clearInterval(this.interval);
     }
   },
   methods: {
     handleScroll() {
-      this.visible = window.pageYOffset > this.visibilityHeight
+      this.visible = window.pageYOffset > this.visibilityHeight;
     },
     backToTop() {
-      const start = window.pageYOffset
-      let i = 0
+      const start = window.pageYOffset;
+      let i = 0;
       this.interval = setInterval(() => {
-        const next = Math.floor(this.easeInOutQuad(10 * i, start, -start, 500))
+        const next = Math.floor(this.easeInOutQuad(10 * i, start, -start, 500));
         if (next <= this.backPosition) {
-          window.scrollTo(0, this.backPosition)
-          clearInterval(this.interval)
+          window.scrollTo(0, this.backPosition);
+          clearInterval(this.interval);
         } else {
-          window.scrollTo(0, next)
+          window.scrollTo(0, next);
         }
-        i++
-      }, 16.7)
+        i++;
+      }, 16.7);
     },
     easeInOutQuad(t, b, c, d) {
-      if ((t /= d / 2) < 1) return c / 2 * t * t + b
-      return -c / 2 * (--t * (t - 2) - 1) + b
-    }
-  }
-}
+      if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+      return -c / 2 * (--t * (t - 2) - 1) + b;
+    },
+  },
+};
 </script>
 
 <style scoped>

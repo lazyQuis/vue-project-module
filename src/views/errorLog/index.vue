@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import errorA from './errorTestA'
-import errorB from './errorTestB'
+import errorA from './errorTestA';
+import errorB from './errorTestB';
 
 export default {
   name: 'errorLog',
-  components: { errorA, errorB }
-}
+  components: { errorA, errorB },
+};
 </script>
 
 <style scoped>

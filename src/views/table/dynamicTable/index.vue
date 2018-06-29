@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import fixedThead from './fixedThead'
-import unfixedThead from './unfixedThead'
+import fixedThead from './fixedThead';
+import unfixedThead from './unfixedThead';
 
 export default {
   name: 'dynamicTable',
-  components: { fixedThead, unfixedThead }
-}
+  components: { fixedThead, unfixedThead },
+};
 </script>
 

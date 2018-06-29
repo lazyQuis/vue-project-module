@@ -37,7 +37,13 @@ module.exports = {
     'camelcase': [0, {
       'properties': 'always'
     }],
-    'comma-dangle': [2, 'never'],
+    'comma-dangle': ['error', {
+      arrays: 'always-multiline',
+      objects: 'always-multiline',
+      imports: 'always-multiline',
+      exports: 'always-multiline',
+      functions: 'always-multiline',
+    }],
     'comma-spacing': [2, {
       'before': false,
       'after': true
@@ -107,9 +113,7 @@ module.exports = {
     'no-mixed-spaces-and-tabs': 2,
     'no-multi-spaces': 2,
     'no-multi-str': 2,
-    'no-multiple-empty-lines': [2, {
-      'max': 1
-    }],
+    'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 1 }],
     'no-native-reassign': 2,
     'no-negated-in-lhs': 2,
     'no-new-object': 2,
@@ -166,13 +170,17 @@ module.exports = {
       'avoidEscape': true,
       'allowTemplateLiterals': true
     }],
-    'semi': [2, 'never'],
+    'semi': ['error', 'always'],
     'semi-spacing': [2, {
       'before': false,
       'after': true
     }],
     'space-before-blocks': [2, 'always'],
-    'space-before-function-paren': [2, 'never'],
+    'space-before-function-paren': ['error', {
+      anonymous: 'always',
+      named: 'never',
+      asyncArrow: 'always'
+    }],
     'space-in-parens': [2, 'never'],
     'space-infix-ops': 2,
     'space-unary-ops': [2, {
@@ -190,9 +198,7 @@ module.exports = {
     'yoda': [2, 'never'],
     'prefer-const': 2,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'object-curly-spacing': [2, 'always', {
-      objectsInObjects: false
-    }],
+    'object-curly-spacing': ['error', 'always'],
     'array-bracket-spacing': [2, 'never']
   }
 }

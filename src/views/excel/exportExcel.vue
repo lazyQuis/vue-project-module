@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
-import { parseTime } from '@/utils'
+import { fetchList } from '@/api/article';
+import { parseTime } from '@/utils';
 
 export default {
   name: 'exportExcel',
@@ -54,47 +54,46 @@ export default {
       listLoading: true,
       downloadLoading: false,
       filename: '',
-      autoWidth: true
-    }
+      autoWidth: true,
+    };
   },
   created() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     fetchData() {
-      this.listLoading = true
-      fetchList().then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
+      this.listLoading = true;
+      fetchList().then((response) => {
+        this.list = response.data.items;
+        this.listLoading = false;
+      });
     },
     handleDownload() {
-      this.downloadLoading = true
-      import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
-        const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
-        const list = this.list
-        const data = this.formatJson(filterVal, list)
+      this.downloadLoading = true;
+      import('@/vendor/Export2Excel').then((excel) => {
+        const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date'];
+        const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time'];
+        const list = this.list;
+        const data = this.formatJson(filterVal, list);
         excel.export_json_to_excel({
           header: tHeader,
           data,
           filename: this.filename,
-          autoWidth: this.autoWidth
-        })
-        this.downloadLoading = false
-      })
+          autoWidth: this.autoWidth,
+        });
+        this.downloadLoading = false;
+      });
     },
     formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => {
+      return jsonData.map(v => filterVal.map((j) => {
         if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
+          return parseTime(v[j]);
         }
-      }))
-    }
-  }
-}
+        return v[j];
+      }));
+    },
+  },
+};
 </script>
 
 <style>

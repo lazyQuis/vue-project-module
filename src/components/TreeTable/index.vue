@@ -29,56 +29,57 @@
   Auth: Lei.j1ang
   Created: 2018/1/19-13:59
 */
-import treeToArray from './eval'
+import treeToArray from './eval';
+
 export default {
   name: 'treeTable',
   props: {
     data: {
       type: [Array, Object],
-      required: true
+      required: true,
     },
     columns: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     evalFunc: Function,
     evalArgs: Array,
     expandAll: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     // 格式化数据源
-    formatData: function() {
-      let tmp
+    formatData() {
+      let tmp;
       if (!Array.isArray(this.data)) {
-        tmp = [this.data]
+        tmp = [this.data];
       } else {
-        tmp = this.data
+        tmp = this.data;
       }
-      const func = this.evalFunc || treeToArray
-      const args = this.evalArgs ? Array.concat([tmp, this.expandAll], this.evalArgs) : [tmp, this.expandAll]
-      return func.apply(null, args)
-    }
+      const func = this.evalFunc || treeToArray;
+      const args = this.evalArgs ? Array.concat([tmp, this.expandAll], this.evalArgs) : [tmp, this.expandAll];
+      return func(...args);
+    },
   },
   methods: {
-    showRow: function(row) {
-      const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true)
-      row.row._show = show
-      return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;'
+    showRow(row) {
+      const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true);
+      row.row._show = show;
+      return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;';
     },
     // 切换下级是否展开
-    toggleExpanded: function(trIndex) {
-      const record = this.formatData[trIndex]
-      record._expanded = !record._expanded
+    toggleExpanded(trIndex) {
+      const record = this.formatData[trIndex];
+      record._expanded = !record._expanded;
     },
     // 图标显示
     iconShow(index, record) {
-      return (index === 0 && record.children && record.children.length > 0)
-    }
-  }
-}
+      return (index === 0 && record.children && record.children.length > 0);
+    },
+  },
+};
 </script>
 <style rel="stylesheet/css">
   @keyframes treeTableShow {

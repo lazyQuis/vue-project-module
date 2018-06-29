@@ -14,32 +14,32 @@
   </div>
 </template>
 <script>
-import draggable from 'vuedraggable'
+import draggable from 'vuedraggable';
 
 export default {
   name: 'dragKanban-demo',
   components: {
-    draggable
+    draggable,
   },
   props: {
     headerText: {
       type: String,
-      default: 'Header'
+      default: 'Header',
     },
     options: {
       type: Object,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     list: {
       type: Array,
       default() {
-        return []
-      }
-    }
-  }
-}
+        return [];
+      },
+    },
+  },
+};
 </script>
 <style lang="scss">
 .board-column {

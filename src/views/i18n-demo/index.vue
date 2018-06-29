@@ -45,8 +45,9 @@
 </template>
 
 <script>
-import local from './local'
-const viewName = 'i18nView'
+import local from './local';
+
+const viewName = 'i18nView';
 
 export default {
   name: 'i18n',
@@ -57,43 +58,43 @@ export default {
       tableData: [{
         date: '2016-05-03',
         name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
+        address: 'No. 189, Grove St, Los Angeles',
       },
       {
         date: '2016-05-02',
         name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
+        address: 'No. 189, Grove St, Los Angeles',
       },
       {
         date: '2016-05-04',
         name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
+        address: 'No. 189, Grove St, Los Angeles',
       },
       {
         date: '2016-05-01',
         name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      }]
-    }
+        address: 'No. 189, Grove St, Los Angeles',
+      }],
+    };
   },
   created() {
     if (!this.$i18n.getLocaleMessage('en')[viewName]) {
-      this.$i18n.mergeLocaleMessage('en', local.en)
-      this.$i18n.mergeLocaleMessage('zh', local.zh)
+      this.$i18n.mergeLocaleMessage('en', local.en);
+      this.$i18n.mergeLocaleMessage('zh', local.zh);
     }
   },
   computed: {
     lang: {
       get() {
-        return this.$store.state.app.language
+        return this.$store.state.app.language;
       },
       set(lang) {
-        this.$i18n.locale = lang
-        this.$store.dispatch('setLanguage', lang)
-      }
-    }
-  }
-}
+        this.$i18n.locale = lang;
+        this.$store.dispatch('setLanguage', lang);
+      },
+    },
+  },
+};
 </script>
 
 <style scoped>

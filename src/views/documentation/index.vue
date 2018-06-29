@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import DropdownMenu from '@/components/Share/dropdownMenu'
+import DropdownMenu from '@/components/Share/dropdownMenu';
 
 export default {
   name: 'documentation',
@@ -19,11 +19,11 @@ export default {
         { title: '实战篇', href: 'https://segmentfault.com/a/1190000009762198' },
         { title: 'vueAdmin-template 篇', href: 'https://segmentfault.com/a/1190000010043013' },
         { title: '自行封装 component', href: 'https://segmentfault.com/a/1190000009090836' },
-        { title: '优雅的使用 icon', href: 'https://segmentfault.com/a/1190000012213278' }
-      ]
-    }
-  }
-}
+        { title: '优雅的使用 icon', href: 'https://segmentfault.com/a/1190000012213278' },
+      ],
+    };
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

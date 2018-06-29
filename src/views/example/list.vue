@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
+import { fetchList } from '@/api/article';
 
 export default {
   name: 'articleList',
@@ -71,42 +71,42 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 10
-      }
-    }
+        limit: 10,
+      },
+    };
   },
   filters: {
     statusFilter(status) {
       const statusMap = {
         published: 'success',
         draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
+        deleted: 'danger',
+      };
+      return statusMap[status];
+    },
   },
   created() {
-    this.getList()
+    this.getList();
   },
   methods: {
     getList() {
-      this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
-        this.listLoading = false
-      })
+      this.listLoading = true;
+      fetchList(this.listQuery).then((response) => {
+        this.list = response.data.items;
+        this.total = response.data.total;
+        this.listLoading = false;
+      });
     },
     handleSizeChange(val) {
-      this.listQuery.limit = val
-      this.getList()
+      this.listQuery.limit = val;
+      this.getList();
     },
     handleCurrentChange(val) {
-      this.listQuery.page = val
-      this.getList()
-    }
-  }
-}
+      this.listQuery.page = val;
+      this.getList();
+    },
+  },
+};
 </script>
 
 <style scoped>

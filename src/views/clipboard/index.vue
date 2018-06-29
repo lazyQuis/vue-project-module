@@ -14,32 +14,32 @@
 </template>
 
 <script>
-import clip from '@/utils/clipboard' // use clipboard directly
-import clipboard from '@/directive/clipboard/index.js' // use clipboard by v-directive
+import clip from '@/utils/clipboard'; // use clipboard directly
+import clipboard from '@/directive/clipboard/index.js'; // use clipboard by v-directive
 
 export default {
   name: 'clipboardDemo',
   directives: {
-    clipboard
+    clipboard,
   },
   data() {
     return {
       activeName: 'directly',
-      inputData: 'https://github.com/PanJiaChen/vue-element-admin'
-    }
+      inputData: 'https://github.com/PanJiaChen/vue-element-admin',
+    };
   },
   methods: {
     handleCopy(text, event) {
-      clip(text, event)
+      clip(text, event);
     },
     clipboardSuccess() {
       this.$message({
         message: '复制成功',
         type: 'success',
-        duration: 1500
-      })
-    }
-  }
-}
+        duration: 1500,
+      });
+    },
+  },
+};
 </script>
 

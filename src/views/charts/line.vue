@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import Chart from '@/components/Charts/lineMarker'
+import Chart from '@/components/Charts/lineMarker';
 
 export default {
   name: 'lineChart',
-  components: { Chart }
-}
+  components: { Chart },
+};
 </script>
 
 <style scoped>

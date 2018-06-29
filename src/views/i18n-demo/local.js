@@ -13,8 +13,8 @@ export default {
       success: '成功按钮',
       info: '信息按钮',
       warning: '警告按钮',
-      danger: '危险按钮'
-    }
+      danger: '危险按钮',
+    },
 
   },
   en: {
@@ -30,7 +30,7 @@ export default {
       success: 'success',
       info: 'info',
       warning: 'warning',
-      danger: 'danger'
-    }
-  }
-}
+      danger: 'danger',
+    },
+  },
+};

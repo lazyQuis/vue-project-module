@@ -14,24 +14,24 @@
 export default {
   props: {
     items: {
-      type: Array
+      type: Array,
     },
     title: {
       type: String,
-      default: 'vue'
-    }
+      default: 'vue',
+    },
   },
   data() {
     return {
-      isActive: false
-    }
+      isActive: false,
+    };
   },
   methods: {
     clickTitle() {
-      this.isActive = !this.isActive
-    }
-  }
-}
+      this.isActive = !this.isActive;
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" >

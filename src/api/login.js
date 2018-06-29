@@ -1,29 +1,28 @@
-import request from '@/utils/request'
+import request from '@/utils/request';
 
 export function loginByUsername(username, password) {
   const data = {
     username,
-    password
-  }
+    password,
+  };
   return request({
     url: '/login/login',
     method: 'post',
-    data
-  })
+    data,
+  });
 }
 
 export function logout() {
   return request({
     url: '/login/logout',
-    method: 'post'
-  })
+    method: 'post',
+  });
 }
 
 export function getUserInfo(token) {
   return request({
     url: '/user/info',
     method: 'get',
-    params: { token }
-  })
+    params: { token },
+  });
 }
-

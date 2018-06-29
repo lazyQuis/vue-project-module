@@ -10,34 +10,34 @@
 </template>
 
 <script>
-import { generateTitle } from '@/utils/i18n'
+import { generateTitle } from '@/utils/i18n';
 
 export default {
   created() {
-    this.getBreadcrumb()
+    this.getBreadcrumb();
   },
   data() {
     return {
-      levelList: null
-    }
+      levelList: null,
+    };
   },
   watch: {
     $route() {
-      this.getBreadcrumb()
-    }
+      this.getBreadcrumb();
+    },
   },
   methods: {
     generateTitle,
     getBreadcrumb() {
-      let matched = this.$route.matched.filter(item => item.name)
-      const first = matched[0]
+      let matched = this.$route.matched.filter(item => item.name);
+      const first = matched[0];
       if (first && first.name !== 'dashboard') {
-        matched = [{ path: '/dashboard', meta: { title: 'dashboard' }}].concat(matched)
+        matched = [{ path: '/dashboard', meta: { title: 'dashboard' } }].concat(matched);
       }
-      this.levelList = matched
-    }
-  }
-}
+      this.levelList = matched;
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
