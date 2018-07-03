@@ -7,6 +7,9 @@ import tagsView from './modules/tagsView';
 import user from './modules/user';
 import getters from './getters';
 
+// custom
+import demo from './modules/demo';
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -16,6 +19,8 @@ const store = new Vuex.Store({
     permission,
     tagsView,
     user,
+    // custom
+    demo,
   },
   getters,
 });

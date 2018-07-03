@@ -23,6 +23,8 @@
       </el-form-item>
 
       <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="loading" @click.native.prevent="handleLogin">{{$t('login.logIn')}}</el-button>
+      <br/>
+      <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="false" @click.native.prevent="demoWarning">Ubiix Module Demo</el-button>
 
       <div class="tips">
         <span>{{$t('login.username')}} : admin</span>
@@ -44,15 +46,25 @@
       <social-sign />
     </el-dialog>
 
+    <el-dialog title="Demo Warning" :visible.sync="isWarning" :show-close="false" center append-to-body>
+      <span>{{warningMsg}}</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="demoWarningCancel()">OK</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import mixinxView from '@/mixins/view';
 import { isvalidUsername } from '@/utils/validate';
 import LangSelect from '@/components/LangSelect';
 import SocialSign from './socialsignin';
 
+const mixins = mixinxView(['demo']);
+
 export default {
+  mixins,
   components: { LangSelect, SocialSign },
   name: 'login',
   data() {
@@ -84,6 +96,14 @@ export default {
       showDialog: false,
     };
   },
+  computed: {
+    warningMsg() {
+      return this.$store.state.demo.warning;
+    },
+    isWarning() {
+      return this.warningMsg !== '';
+    },
+  },
   methods: {
     showPwd() {
       if (this.passwordType === 'password') {
@@ -107,6 +127,12 @@ export default {
           return false;
         }
       });
+    },
+    demoWarning() {
+      this.view.demo.warning();
+    },
+    demoWarningCancel() {
+      this.view.demo.warningCancel();
     },
     afterQRScan() {
       // const hash = window.location.hash.slice(1)
