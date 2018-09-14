@@ -61,6 +61,7 @@ const Me = class ModuleCtrl {
   }
 };
 
+// manage event from 'base' to which 'ctrl'
 Me.EVENT_REG = function EVENT_REG(name, msg) {
   if (!(name in Me.EVENT_MAP)) {
     return;

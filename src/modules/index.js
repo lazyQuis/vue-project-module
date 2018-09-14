@@ -27,7 +27,6 @@ const Me = class Module {
     this._cfg = Object.assign({}, config);
     this._isInit = true;
     // vue bindinf
-    Vue.prototype.moduleRegister = this.register.bind(this);
     Vue.prototype.$module = this;
     // plugin
     // ...
