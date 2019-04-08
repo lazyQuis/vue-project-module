@@ -6,9 +6,6 @@ import BaseHttp from './base/http';
 // ctrl
 import CtrlDemo from './ctrl/demo';
 
-// view
-import ViewDemo from './view/demo';
-
 const Me = class Module {
   constructor() {
     this._isInit = false;
@@ -43,7 +40,6 @@ const Me = class Module {
     }
     this._isReg = true;
     this._ctrlSet();
-    this._viewSet(vue);
   }
   _ctrlSet() {
     // ctrl
@@ -53,12 +49,6 @@ const Me = class Module {
         data: this.base.data,
         http: this.base.http,
       },
-    });
-  }
-  _viewSet(vue) {
-    // view
-    this.view.demo = new ViewDemo(vue, {
-      demo: this.ctrl.demo,
     });
   }
 };

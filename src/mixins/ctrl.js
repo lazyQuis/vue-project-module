@@ -2,10 +2,10 @@ export default (list) => {
   list = list || [];
   const mixins = {
     created() {
-      this.view = {};
+      this.ctrl = {};
       list.forEach((name) => {
-        if (name in this.$module.view) {
-          this.view[name] = this.$module.view[name];
+        if (name in this.$module.ctrl) {
+          this.ctrl[name] = this.$module.ctrl[name];
         }
       });
     },
